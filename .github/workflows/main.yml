@@ -15,6 +15,5 @@ jobs:
       with:
         python-version: 3.9
     - name: Run Python Script
-      working-directory: ./ml-ci-cd
       run: |
         echo Hello World!
