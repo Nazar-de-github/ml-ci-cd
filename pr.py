@@ -1,5 +1,8 @@
 import datetime
 
-print("Hello World")
+def main():
+  print("Hello World")
+  print("PR at time: "+datetime.datetime.now())
 
-print("PR at time: "+datetime.now())
+if __name__ == "__main__":
+  main()
