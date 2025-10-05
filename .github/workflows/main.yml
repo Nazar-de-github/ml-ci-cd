@@ -1,0 +1,19 @@
+name: Cleanup Workflow Runs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delete_runs:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Delete old workflow runs
+        uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
+        with:
+          # Видаляє всі запуски старші за 1 день (86400 секунд)
+          older-than-seconds: 86400
+          repository: ${{ github.repository }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
