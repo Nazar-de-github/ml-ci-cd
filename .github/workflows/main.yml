@@ -9,6 +9,9 @@ jobs:
     permissions:
       actions: write
     steps:
+      - name: Install @actions/github
+        run: npm install @actions/github
+        working-directory: ${{ github.action_path }}
       - name: Delete old workflow runs
         uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
         with:
