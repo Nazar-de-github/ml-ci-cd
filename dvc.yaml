@@ -7,5 +7,4 @@ stages:
     - model.py
     - metrics_and_plots.py
     metrics:
-    - metrics.json:
-      cache: false
+    - metrics.json
