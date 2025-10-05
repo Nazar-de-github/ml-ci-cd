@@ -13,7 +13,6 @@ jobs:
         uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
         with:
           # Видаляє всі запуски старші за 1 день (86400 секунд)
-          older-than-seconds: 86400
+          older-than-seconds: 10
           repository: ${{ github.repository }}
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
