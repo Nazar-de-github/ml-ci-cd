@@ -7,6 +7,14 @@ stages:
       hash: md5
       md5: 2309cc5f04782ed9bb6016d9f4e381cf
       size: 61194
+    - path: metrics_and_plots.py
+      hash: md5
+      md5: 46e8413f189699bf1e66b01e0a9ffa8a
+      size: 392
+    - path: model.py
+      hash: md5
+      md5: c9da7118f947dffa37591bc53bb23e4e
+      size: 913
     - path: train.py
       hash: md5
       md5: 808d2b9088fb137e43e85dede24b613b
