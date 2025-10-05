@@ -15,4 +15,5 @@ jobs:
           # Видаляє всі запуски старші за 1 день (86400 секунд)
           older-than-seconds: 10
           repository: ${{ github.repository }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
