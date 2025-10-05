@@ -10,4 +10,10 @@ jobs:
       actions: write
     steps:
       - name: Delete old workflow runs
-        run: echo Hello world
+        uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
+        with:
+          # Deletes all runs older than 1 day (86400 seconds)
+          older-than-seconds: 10
+          repository: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
