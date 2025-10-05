@@ -9,14 +9,7 @@ jobs:
     permissions:
       actions: write
     steps:
-      - name: Install @actions/github
-        run: npm install @actions/github
-        working-directory: ${{ github.action_path }}
       - name: Delete old workflow runs
-        uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
+        uses: InfraWay/delete-workflow-runs@v2.1.2
         with:
-          # Deletes all runs older than 1 day (86400 seconds)
-          older-than-seconds: 10
-          repository: ${{ github.repository }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
