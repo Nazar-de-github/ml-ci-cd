@@ -4,5 +4,7 @@ stages:
     deps:
     - data.csv
     - train.py
+    - model.py
+    - metrics_and_plots.py
     outs:
     - metrics.json
