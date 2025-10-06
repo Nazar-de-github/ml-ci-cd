@@ -29,14 +29,6 @@ jobs:
       - name: DVC Setup
         uses: iterative/setup-dvc@v1
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          
-      - name: Install CML CLI
-        run: npm install -g cml
-
       - name: DVC Run
         run: dvc repro
 
