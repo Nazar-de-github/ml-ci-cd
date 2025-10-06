@@ -11,7 +11,7 @@ permissions:
 
 
 jobs:
-  train-report:
+  train-report-more:
     runs-on: ubuntu-latest
     
     steps:
