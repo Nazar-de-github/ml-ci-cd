@@ -46,7 +46,7 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # 3. ВИКОРИСТОВУЄМО CML ДЛЯ ПУБЛІКАЦІЇ
-        uses: cml-actions/cml@v2 
+        uses: ToastCoder/cml-actions@0.1.2 
         with:
           # CML зчитує файл report.md, завантажує зображення, 
           # і публікує коментар
