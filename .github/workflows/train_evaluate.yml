@@ -6,8 +6,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # ⬅️ Потрібно для CML, щоб завантажувати зображення
   pull-requests: write
+  contents: write
+
+
 
 jobs:
   train-report-more:
@@ -27,41 +29,23 @@ jobs:
 
       - name: DVC Setup
         uses: iterative/setup-dvc@v1
-        
-      # === КРОК 1: ВСТАНОВЛЕННЯ CML ===
-      - name: Setup Node
-        uses: actions/setup-node@v4 # ⬅️ Потрібен для CML
-        with:
-          node-version: '20' 
-
-      - name: Install CML CLI
-        # Встановлюємо CML через NPM (це найнадійніший спосіб)
-        run: npm install -g cml
-      # =================================
-
       - name: DVC Run
-        run: dvc repro # Тут генеруються metrics.json та predictions.csv
+        run: dvc repro
 
-      - name: Write report and create plot
+      - name: Write report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 1. Генерація звіту Markdown
-          echo "## 📊 ML-Пайплайн Звіт" > report.md
-          dvc metrics show --md >> report.md
-          
+          dvc metrics show --md > report.md
           git fetch --prune
           dvc metrics diff --md main >> report.md
+          cml comment create report.md
 
-          # 2. ГЕНЕРУЄМО ЗОБРАЖЕННЯ МАТРИЦІ ПЛУТАНИНИ (SVG)
-          # DVC генерує SVG на основі конфігурації 'plots' у dvc.yaml
-          dvc plots show --title "Confusion Matrix" -o confusion_matrix.svg predictions.csv 
-          
-          # 3. ДОДАЄМО ЗОБРАЖЕННЯ ДО ЗВІТУ
-          # CML-команда 'cml pr write' може приймати текст та зображення
-          echo "### Матриця Плутанини" >> report.md
-          echo "![](./confusion_matrix.svg)" >> report.md # Посилаємося на SVG-файл
-          
-          # 4. ПУБЛІКУЄМО ЗВІТ ТА ЗОБРАЖЕННЯ ЧЕРЕЗ CML
-          # CML автоматично завантажує локальні зображення (SVG/PNG) на GitHub і вставляє їх у коментар.
-          cml pr write report.md
+      - name: Comment
+        uses: JoseThen/comment-pr@v1.2.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          file_path: ./report.md
+
+
+      
