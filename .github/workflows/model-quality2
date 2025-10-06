@@ -2,7 +2,7 @@ name: model-quality2
 
 on:
   push:
-    branches: [main, feature]
+    branches: ["main", "feature"]
   
   workflow_dispatch:
 
