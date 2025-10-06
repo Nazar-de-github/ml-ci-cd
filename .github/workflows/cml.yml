@@ -14,6 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Comment
+        uses: hasura/comment-progress@v2.3.0
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            ### Example comment
+            "Hello"
       - name: cml_run
         env:
           repo_token: ${{secrets.GITHUB_TOKEN}}
