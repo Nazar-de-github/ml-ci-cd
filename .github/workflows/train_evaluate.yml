@@ -41,11 +41,23 @@ jobs:
           dvc metrics diff --md main >> report.md
           echo "![](./confusion_matrix.png)" >> report.md
 
-      - name: Comment
-        uses: JoseThen/comment-pr@v1.2.0
+
+      - name: Publish Comment
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # 3. ВИКОРИСТОВУЄМО CML ДЛЯ ПУБЛІКАЦІЇ
+        uses: cml-actions/cml@v2 
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          file_path: ./report.md
+          # CML зчитує файл report.md, завантажує зображення, 
+          # і публікує коментар
+          comment: report.md
+
+
+      # - name: Comment
+      #   uses: JoseThen/comment-pr@v1.2.0
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     file_path: ./report.md
 
 
       
