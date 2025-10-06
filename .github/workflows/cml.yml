@@ -18,6 +18,7 @@ jobs:
         uses: hasura/comment-progress@v2.3.0
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          repo: Nazar-de-github/ml-ci-cd
           message: |
             ### Example comment
             "Hello"
