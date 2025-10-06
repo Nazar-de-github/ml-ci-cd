@@ -7,6 +7,7 @@ on:
 
 permissions:
   pull-requests: write
+  contents: write
 
 
 
@@ -28,7 +29,6 @@ jobs:
 
       - name: DVC Setup
         uses: iterative/setup-dvc@v1
-
       - name: DVC Run
         run: dvc repro
 
@@ -39,12 +39,20 @@ jobs:
           dvc metrics show --md > report.md
           git fetch --prune
           dvc metrics diff --md main >> report.md
+          echo "![](./confusion_matrix.png)" >> report.md
 
-      - name: Comment
-        uses: JoseThen/comment-pr@v1.2.0
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          file_path: ./report.md
+      # - name: Publish Comment
+      - uses: iterative/setup-cml@v2
+      - env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Can use the default token for most functions
+        run: cml comment create --publish report.md
+
+
+      # - name: Comment
+      #   uses: JoseThen/comment-pr@v1.2.0
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     file_path: ./report.md
 
 
       
