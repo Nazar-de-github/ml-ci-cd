@@ -47,10 +47,10 @@ jobs:
           dvc metrics show --md > report.md
 
       - name: Comment
-        uses: hasura/comment-progress@v2.3.0
-        env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          message: |
-            ### Example comment
-            "Hello"
+        uses: JoseThen/comment-pr@v1.2.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          comment: 'Hello! :wave:'
+
+
       
