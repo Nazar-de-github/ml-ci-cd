@@ -6,5 +6,7 @@ stages:
     - train.py
     - model.py
     - metrics_and_plots.py
+    outs:
+    - metrics.json
     metrics:
     - metrics.json
