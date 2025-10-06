@@ -45,13 +45,12 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dvc metrics show --md > report.md
-          cml pr write report.md
 
       - name: Comment
         uses: JoseThen/comment-pr@v1.2.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment: 'Hello! :wave:'
+          file_path: ./report.md
 
 
       
