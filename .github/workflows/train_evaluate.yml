@@ -39,7 +39,7 @@ jobs:
           dvc metrics show --md > report.md
           git fetch --prune
           dvc metrics diff --md main >> report.md
-          cml comment create report.md
+          echo "![](./confusion_matrix.png)" >> report.md
 
       - name: Comment
         uses: JoseThen/comment-pr@v1.2.0
