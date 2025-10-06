@@ -29,8 +29,13 @@ jobs:
       - name: DVC Setup
         uses: iterative/setup-dvc@v1
 
-      - name: Install CML
-        run: pip install cml
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Install CML CLI
+        run: npm install -g @dvc/cml
 
       - name: DVC Run
         run: dvc repro
@@ -41,6 +46,6 @@ jobs:
         run: |
           dvc metrics show --md >> report.md
           dvc metrics diff --md main >> report.md
-          cml comment create report.md
+          cml pr write report.md
       
       
