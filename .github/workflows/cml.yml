@@ -13,15 +13,8 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Publish Report Comment
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          issue-number: ${{ github.event.pull_request.number }}
-          # Використовуємо звіт, згенерований у попередньому кроці
-          body: ${{ steps.report_gen.outputs.comment-body }}
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: cml_run
         env:
           repo_token: ${{secrets.GITHUB_TOKEN}}
