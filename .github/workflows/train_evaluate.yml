@@ -21,10 +21,21 @@ jobs:
       - name: Python-setup
         uses: actions/setup-python@v6.0.0
         with:
-          python-version: 3.9
+          python-version: 3.11
+
+      - name: Dependencies
+        run: pip install -r requirements.txt
 
       - name: DVC Setup
         uses: iterative/setup-dvc@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install CML CLI
+        run: npm install -g cml
 
       - name: DVC Run
         run: dvc repro
@@ -34,6 +45,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dvc metrics show --md >> report.md
-          cml comment create report.md
+          dvc metrics diff --md main >> report.md
+          cml pr write report.md
       
       
