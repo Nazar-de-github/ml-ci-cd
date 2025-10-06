@@ -49,5 +49,6 @@ jobs:
       - name: Comment
         uses: JoseThen/comment-pr@v1.2.0
         with:
-          comment: "Hello from action :wave:"
+          comment: 'This PR is the bees knees!'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
