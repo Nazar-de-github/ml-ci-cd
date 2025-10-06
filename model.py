@@ -1,6 +1,7 @@
 import json
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from metrics_and_plots import save_predictions
 
 RFC_FOREST_DEPTH = 2
 
@@ -25,6 +26,7 @@ def evaluate_model(model, X_test, y_test, float_precision=4):
         "recall": recall,
         "f1_score": f1,
     }
+    save_predictions(y_test, y_pred)
 
     return json.loads(
         json.dumps(metrics), parse_float=lambda x: round(float(x), float_precision)

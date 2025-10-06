@@ -6,7 +6,14 @@ stages:
     - train.py
     - model.py
     - metrics_and_plots.py
-    outs:
-    - confusion_matrix.png
     metrics:
     - metrics.json
+    plots:
+    - predictions.csv:
+        template: confusion
+        x: predicted_label
+        y: true_label
+        x_label: "Predicted label"
+        y_label: "True label"
+        title: 'Confusion matrix'
+        cache: false
