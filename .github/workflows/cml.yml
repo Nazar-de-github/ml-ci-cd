@@ -1,6 +1,13 @@
 name: model-quality
 
-on: [push]
+on:
+  push:
+    branches: [main, feature]
+  
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   run:
