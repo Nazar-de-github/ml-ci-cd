@@ -6,5 +6,7 @@ stages:
     - train.py
     - model.py
     - metrics_and_plots.py
+    outs:
+    - confusion_matrix.png
     metrics:
     - metrics.json
