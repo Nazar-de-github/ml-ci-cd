@@ -41,16 +41,11 @@ jobs:
           dvc metrics diff --md main >> report.md
           echo "![](./confusion_matrix.png)" >> report.md
 
-
-      - name: Publish Comment
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # 3. ВИКОРИСТОВУЄМО CML ДЛЯ ПУБЛІКАЦІЇ
-        uses: ToastCoder/cml-actions@0.1.2 
-        with:
-          # CML зчитує файл report.md, завантажує зображення, 
-          # і публікує коментар
-          comment: report.md
+      # - name: Publish Comment
+      - uses: iterative/setup-cml@v2
+      - env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Can use the default token for most functions
+        run: cml comment create --publish report.md
 
 
       # - name: Comment
