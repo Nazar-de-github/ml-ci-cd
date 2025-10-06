@@ -37,6 +37,8 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dvc metrics show --md > report.md
+          git fetch --prune
+          dvc metrics diff--md main >> report.md
 
       - name: Comment
         uses: JoseThen/comment-pr@v1.2.0
