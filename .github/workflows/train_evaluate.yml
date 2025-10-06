@@ -47,8 +47,11 @@ jobs:
           dvc metrics show --md > report.md
 
       - name: Comment
-        uses: github-actions-up-and-running/pr-comment@v1.0.1
-        with:
-          message: 'This PR is the bees knees!'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        uses: raisultan/pr-commenter@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_NAME: "${{ github.repository }}"
+          COMMENT: |
+            ### Example comment
+            "Hello"
       
