@@ -45,7 +45,6 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dvc metrics show --md >> report.md
-          dvc metrics diff --md main >> report.md
           cml pr write report.md
       
       
