@@ -29,6 +29,9 @@ jobs:
       - name: DVC Setup
         uses: iterative/setup-dvc@v1
 
+      - name: Install CML
+        run: pip install cml
+
       - name: DVC Run
         run: dvc repro
 
@@ -37,7 +40,6 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dvc metrics show --md >> report.md
-          git fetch --prune
           dvc metrics diff --md main >> report.md
           cml comment create report.md
       
