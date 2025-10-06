@@ -7,20 +7,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  pull-requests: write
 
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Comment
-        uses: hasura/comment-progress@v2.3.0
-        env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          message: |
-            ### Example comment
-            "Hello"
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: cml_run
         env:
           repo_token: ${{secrets.GITHUB_TOKEN}}
@@ -28,3 +22,4 @@ jobs:
           pip install -r requirements.txt
           python train.py
           cat metrics.json
+        
