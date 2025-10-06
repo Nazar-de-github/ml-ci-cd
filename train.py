@@ -17,6 +17,7 @@ model = train_model(X_train, y_train)
 
 metrics = evaluate_model(model, X_test, y_test)
 save_metrics(metrics)
+plot_confusion_matrix(model, X_test, y_test)
 
 print(metrics)
 
