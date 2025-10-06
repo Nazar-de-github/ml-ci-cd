@@ -55,7 +55,7 @@ jobs:
 
           # 2. ГЕНЕРУЄМО ЗОБРАЖЕННЯ МАТРИЦІ ПЛУТАНИНИ (SVG)
           # DVC генерує SVG на основі конфігурації 'plots' у dvc.yaml
-          dvc plots show --title "Confusion Matrix" --target predictions.csv -o confusion_matrix.svg
+          dvc plots show --title "Confusion Matrix" -o confusion_matrix.svg predictions.csv 
           
           # 3. ДОДАЄМО ЗОБРАЖЕННЯ ДО ЗВІТУ
           # CML-команда 'cml pr write' може приймати текст та зображення
