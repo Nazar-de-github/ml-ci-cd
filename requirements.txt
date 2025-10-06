@@ -1,4 +1,5 @@
 pandas
 dvc
-scikit-learn
+sklearn
 matplotlib
+numpy
