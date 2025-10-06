@@ -49,8 +49,7 @@ jobs:
       - name: Comment
         uses: hasura/comment-progress@v2.3.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          repository: "${{ github.repository }}"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           message: |
             ### Example comment
             "Hello"
